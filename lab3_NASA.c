@@ -1,6 +1,5 @@
 #include "stdio.h"
 #include "string.h"
-//l;lfsd;f
 #define SIZE 1891715
 
 char str[391] = {0};
