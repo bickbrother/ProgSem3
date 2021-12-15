@@ -2,7 +2,7 @@
 #include "string.h"
 
 #define SIZE 1891715
-
+//testing 
 char str[391] = {0};
 int times[SIZE];
 void filling() {
