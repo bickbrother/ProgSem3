@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
-project(ProgSem3 C)
+set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_C_STANDARD 23)
+project(ProgSem3)
+include_directories(libs)
+add_subdirectory(libs)
 
-add_executable(ProgSem3 lab3_NASA.c.c)
+add_executable(ProgSem3 main.cpp)
+add_subdirectory(Google_tests)

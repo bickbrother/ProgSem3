@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++ -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/Google_Tests_run.dir/test.o -o Google_Tests_run   -L/Users/sxmurxe/CLionProjects/ck_lab1/Google_tests/cmake-build-debug/lib  lib/libgtestd.a lib/libgtest_maind.a lib/libgtestd.a -llibs 
