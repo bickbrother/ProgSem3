@@ -3,4 +3,4 @@ project(ProgSem3 C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(ProgSem3 main.c)
+add_executable(ProgSem3 lab3_NASA.c.c)
