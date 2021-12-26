@@ -57,6 +57,7 @@ uint1024_t add_op(uint1024_t x, uint1024_t y) {
 
 uint1024_t subtr_op(uint1024_t x, uint1024_t y) {
     uint1024_t result = {0};
+    unsigned diff;
     bool div = 0;
     if (eq(x, y)) {
         return result;
@@ -78,23 +79,58 @@ uint1024_t subtr_op(uint1024_t x, uint1024_t y) {
                 div = 1;
             }
         }
-    } 
+    }
     return result;
 }
 
+bool is_uint1024_t_null(uint1024_t x) {
+    for (int i = 0; i < CELLSNUMBER; i++) {
+        if (x.cells[i] != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 uint1024_t mult_op(uint1024_t x, uint1024_t y) {
-    uint1024_t product = from_uint(0);
-    if (more(x, y))
-        while (!eq(y, from_uint(0))) {
-            product = add_op(product, x);
-            y = subtr_op(y, from_uint(1));
+    for (int i = 0; i < CELLSNUMBER; i++) {
+        if (y.cells[i] > x.cells[i]) {
+            uint1024_t temp = y;
+            y = x;
+            x = temp;
+            break;
         }
-    else
-        while (!eq(x, from_uint(0))) {
-            product = add_op(product, y);
-            x = subtr_op(x, from_uint(1));
+    }
+    uint1024_t result = from_uint(0);
+    uint1024_t summator = x;
+    if (is_uint1024_t_null(y) || is_uint1024_t_null(x)) {
+        return result;
+    }
+    int last_block = 0;
+    int last_bit = 0;
+    for (int i = 0; i < CELLSNUMBER; ++i) {
+        if (y.cells[i] != 0) {
+            last_block = i;
+            for (int j = CELLSNUMBER - 1; j >= 0; --j) {
+                if (((y.cells[i] >> j) & 1u) == 1) {
+                    last_bit = j;
+                    break;
+                }
+            }
+            break;
         }
-    return product;
+    }
+    for (int i = 0; i < CELLSNUMBER; ++i) {
+        for (int j = 0; j < 32; ++j) {
+            if (((y.cells[i] >> j) & 1u) == 1) {
+                result = add_op(result, summator);
+            }
+            summator = add_op(summator, summator);
+            if (i == last_block && j == last_bit)
+                return result;
+        }
+    }
+    return result;
 }
 
 void printf_value(uint1024_t x) {
@@ -120,10 +156,10 @@ void printf_value(uint1024_t x) {
                     printf("%c", cell[j]);
                 }
                 flag = true;
-                }
+            }
         } else {
             printf("%X", x.cells[0]);
-        }   
+        }
     }
 }
 
@@ -133,8 +169,9 @@ void scanf_value(uint1024_t* x) {
         *x = mult_op(*x, from_uint(10));
         *x = add_op(*x, from_uint(chr - '0'));
         chr = getchar();
-        }
     }
+    return;
+}
 
 int main() {
     uint1024_t value1 = {0}, value2 = {0};
