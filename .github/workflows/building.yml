@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Compile
-        run: g++ WordCont.cpp -o WordCont.exe
+        run: gсс WordCont.cpp -o WordCont.exe
