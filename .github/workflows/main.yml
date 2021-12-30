@@ -25,12 +25,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v2
- 
-    - name: Clone
-        run:
-          git clone https://github.com/google/googletest.git -b release-1.11.0
-        
       - name: Configure
         run:
           cmake -S. -Bbuild
