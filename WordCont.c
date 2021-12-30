@@ -1,7 +1,7 @@
 /**
  * @file WordCont.c
  * @author Ignatiev Andrey (ignatiev.andreyka@gmail.com)
- * @brief Программа считает количсетво либо строк, либо байтов, либо слов в файле
+ * @brief Программа считает количество либо строк, либо байтов, либо слов в файле
  * 
  * Формат входных данных: "WordCont.exe <command> <file>"
  * Варианты command: -l --lines -- программа выведет количество строк в файле
