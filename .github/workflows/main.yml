@@ -25,6 +25,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Clone
+        run:
+          git clone https://github.com/google/googletest.git -b release-1.11.0
+        
       - name: Configure
         run:
           cmake -S. -Bbuild
@@ -32,6 +36,9 @@ jobs:
       - name: Build
         run: 
           cmake --build build
+      - name: Test
+        run:
+          ./build/test_lab1
       - name: Create_exe
         run:
-          gcc WordCont.c -o WordCont.exe
+          gcc word_count.c -o word_count.exe
