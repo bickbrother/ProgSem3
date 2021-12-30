@@ -32,9 +32,6 @@ jobs:
       - name: Build
         run: 
           cmake --build build
-      - name: Test
-        run:
-          ./build/test_lab1
       - name: Create_exe
         run:
           gcc WordCont.c -o WordCont.exe
